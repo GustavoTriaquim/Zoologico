@@ -1,70 +1,105 @@
-# Getting Started with Create React App
+# Zoológico
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este repositório contém uma aplicação voltada à gestão de um zoológico, incluindo organização de animais, recintos e demais elementos relacionados. O projeto é composto por um front-end em React e uma API no back-end responsável por fornecer os dados ao sistema.
 
-## Available Scripts
+O foco deste documento é destacar **as principais dificuldades encontradas durante o desenvolvimento**, com ênfase na implementação da **API REST**, estruturação das rotas e comunicação entre front-end e back-end.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## 🎯 Objetivo do Projeto
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Construir um sistema simples para simular a administração de um zoológico, permitindo o cadastro e exibição de informações sobre animais, espécies e outras entidades.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+A ideia principal foi aplicar conceitos de:
 
-### `npm test`
+* Estruturação de API REST
+* Manipulação de dados
+* Consumo de API no front-end
+* Organização de projeto full-stack
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## 💡 Principais Dificuldades Enfrentadas
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 1. Criar a API REST do zero
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+A maior dificuldade do projeto foi implementar corretamente a **API REST**, garantindo que as rotas fossem bem estruturadas e seguindo boas práticas como:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+* Separação entre rotas, controllers e serviços
+* Utilização adequada de métodos HTTP (`GET`, `POST`, `PUT`, `DELETE`)
+* Tratamento de erros e respostas padronizadas
+* Organização dos dados trafegados
 
-### `npm run eject`
+Houve um esforço significativo para entender como cada módulo deveria se comunicar e como manter a API escalável caso fosse necessário crescer o projeto.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 2. Definir como os animais e entidades seriam estruturados
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Por ser um projeto envolvendo animais, espécies e recintos, foi necessário decidir:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+* Como organizar cada entidade
+* Quais atributos cada uma teria
+* Como o back-end iria armazenar e fornecer essas informações
 
-## Learn More
+Mesmo sem usar um banco de dados complexo, apenas modelar os objetos e deixá-los consistentes com a lógica do zoológico já exigiu bastante planejamento.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### 3. Garantir a comunicação correta do front-end com o back-end
 
-### Code Splitting
+Outro ponto desafiador foi fazer o front-end consumir corretamente os endpoints criados. Isso incluiu:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+* Ajustar URLs e rotas do servidor
+* Tratar as respostas da API
+* Exibir corretamente os dados retornados
+* Lidar com possíveis erros de requisição
 
-### Analyzing the Bundle Size
+Até detalhes simples, como lidar com listas vazias ou respostas mal formatadas, exigiram atenção.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+---
 
-### Making a Progressive Web App
+### 4. Estruturar o back-end de forma clara e organizada
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+No início, o back-end estava confuso e com arquivos misturados. Aos poucos foi sendo reestruturado, separando:
 
-### Advanced Configuration
+* Arquivos de rotas
+* Controllers
+* Camada de lógica
+* Utilidades e middlewares
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Com isso, a API ficou mais fácil de entender e manter.
 
-### Deployment
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### 5. Aprender a lidar com requisições assíncronas
 
-### `npm run build` fails to minify
+Como a comunicação entre front-end e back-end depende de *promises*, houve também uma curva de aprendizado para:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+* Utilizar `async/await` de forma correta
+* Tratar erros de rede
+* Garantir que o front-end só renderizasse dados completos
+
+---
+
+## 📁 Estrutura Geral do Projeto
+
+```
+Zoologico/
+├── backend/           # API REST criada para fornecer dados ao front-end
+├── public/            # Arquivos públicos do front-end (React)
+└── src/               # Aplicação React que consome a API
+```
+
+---
+
+## 📌 Conclusão
+
+Apesar de simples, o projeto foi extremamente útil para aprender:
+
+* Como modelar uma API REST
+* Como estruturar um back-end organizado
+* Como consumir APIs em React
+* Como lidar com conceitos essenciais de comunicação entre sistemas
+
+Cada dificuldade encontrada contribuiu diretamente para a evolução do projeto e do entendimento sobre desenvolvimento full-stack.
